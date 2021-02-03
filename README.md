@@ -1,5 +1,5 @@
   # portfolio-generator
-  src/: "source" files to build and develop the project. This is where the original source files are located, before being compiled into fewer files to dist/, public/ or build/.
+  <!-- src/: "source" files to build and develop the project. This is where the original source files are located, before being compiled into fewer files to dist/, public/ or build/.
 dist/: "distribution", the compiled code/library, also named public/ or build/. The files meant for production or public use are usually located here.
 assets/: static content like images, video, audio, fonts etc.
 lib/: external dependencies (when included directly).
@@ -21,4 +21,4 @@ composer.lock: specific version lock for dependencies installed from composer.js
 gulpfile.js: used to define functions and tasks to be run with Gulp.
 .travis.yml: config file for the Travis CI environment.
 .gitignore: Specification of the files meant to be ignored by Git.
-﻿
+﻿ -->
