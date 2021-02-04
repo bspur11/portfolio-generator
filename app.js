@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
-
-// const fs = require('fs');
+const generatePage = require('./src/page-template.js');
+const fs = require('fs');
 
 const promptUser = () => {
   return inquirer.prompt([{
@@ -9,10 +9,10 @@ const promptUser = () => {
       message: 'What is your name? (Required)',
       validate: nameInput => {
         if (nameInput) {
-          return true;
+          return true
         } else {
           console.log('Please enter your name!');
-          return false;
+          return false
         }
       }
     },
@@ -23,7 +23,7 @@ const promptUser = () => {
 
       validate: githubInput => {
         if (githubInput) {
-          return true;
+          return true
         } else {
           console.log('Please enter your GitHub Usernsme!');
           return false
@@ -34,7 +34,7 @@ const promptUser = () => {
       type: 'confirm',
       name: 'confirmAbout',
       message: 'Would you like to enter some information about yourself for an "About" section?',
-      default: false
+      default: true
     },
     {
       type: 'input',
@@ -44,25 +44,25 @@ const promptUser = () => {
         confirmAbout
       }) => {
         if (confirmAbout) {
-          return true;
+          return true
         } else {
-          return false;
+          return false
         }
       }
     },
-    {
-      type: 'input',
-      name: 'about',
-      message: 'Provide some information about yourself:',
-      validate: nameInput => {
-        if (nameInput) {
-          return true;
-        } else {
-          console.log('Please tell us about your self!');
-          return false;
-        }
-      }
-    }
+    // {
+    //   type: 'input',
+    //   name: 'about',
+    //   message: 'Provide some information about yourself:',
+    //   validate: nameInput => {
+    //     if (nameInput) {
+    //       return true;
+    //     } else {
+    //       console.log('Please tell us about your self!');
+    //       return false;
+    //     }
+    //   }
+    // }
   ]);
 };
 // Notice that the function returns a running of inquire.prompt(), thus returning what it returns, which is a Promise. Just like fetch(), which we covered previously, the Promise will resolve with a .then() method.
@@ -154,7 +154,7 @@ promptUser()
 
 // With this statement, the object in the module.exports assignment will be reassigned to the generatePage variable in the app.js file. Note here that the variable name is arbitrary; however, the relative path to include the file must be exact.
 
-// const generatePage = require('./src/page-template.js');
+
 
 // profileDataArgs array starting at the third iteration
 
