@@ -1,12 +1,12 @@
 // const generatePage = () => 'Name: Jane, Github: janehub';
 const fs = require('fs');
-// const generatePage = (userName, githubName) => `Name: ${userName}, Guthub: ${githubName}`;
+const generatePage = (userName, githubName) => `Name: ${userName}, Guthub: ${githubName}`;
 
-// module.exports = generatePage;
+module.exports = generatePage;
 
 // create the about section
 const generateAbout = aboutText => {
-  console.log(generateAbout);
+  // console.log(generateAbout);
   if (!aboutText) {
     return '';
   }

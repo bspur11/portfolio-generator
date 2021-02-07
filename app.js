@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const { writeFile, copyFile } = require('./utils/generate-site.js');;
 const fs = require('fs');
 const generatePage = require('./src/page-template.js');
 
@@ -8,6 +9,7 @@ const promptUser = () => {
       type: 'input',
       name: 'name',
       message: 'What is your name? (Required)',
+     
       validate: nameInput => {
         if (nameInput) {
           return true
@@ -51,21 +53,12 @@ const promptUser = () => {
         }
       }
     },
-    // {
-    //   type: 'input',
-    //   name: 'about',
-    //   message: 'Provide some information about yourself:',
-    //   validate: nameInput => {
-    //     if (nameInput) {
-    //       return true;
-    //     } else {
-    //       console.log('Please tell us about your self!');
-    //       return false;
-    //     }
-    //   }
-    // }
+    
   ]);
 };
+
+
+
 // Notice that the function returns a running of inquire.prompt(), thus returning what it returns, which is a Promise. Just like fetch(), which we covered previously, the Promise will resolve with a .then() method.
 
 // So, here we're calling a function that returns the result of inquire.prompt, which is a Promise. We therefore append the .then() method to the function call, since it returns a Promise, and we put into .then() whatever we wish to take place after the Promise is resolved.
@@ -159,22 +152,24 @@ Add a New Project
 
 };
 
-
-
-
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    const pageHTML = generatePage(portfolioData);
-
-    fs.writeFile('./index.html', pageHTML, err => {
-      if (err) throw new Error(err);
-
-      //   console.log('Page created! Check out index.html in this directory to see it!');
-    });
+    return generatePage(portfolioData);
+  })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .then(writeFileResponse => {
+    console.log(writeFileResponse);
+    return copyFile();
+  })
+  .then(copyFileResponse => {
+    console.log(copyFileResponse);
+  })
+  .catch(err => {
+    console.log(err);
   });
-
-
 
 
 
