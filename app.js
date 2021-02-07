@@ -79,6 +79,8 @@ Add a New Project
 =================
 `);
 
+  // If there's no 'projects' array property, create one
+
   if (!portfolioData.projects) {
     portfolioData.projects = [];
   }
@@ -86,12 +88,28 @@ Add a New Project
   return inquirer.prompt([{
         type: 'input',
         name: 'name',
-        message: 'What is the name of your project?'
+        message: 'What is the name of your project? (Required)',
+        validate: nameInput => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log('You need to enter a Project name!');
+            return false;
+          }
+        }
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Provide a description of the project (Required)'
+        message: 'Provide a description of the project (Required)',
+        validate: descriptionInput => {
+          if (descriptionInput) {
+            return true;
+          } else {
+            console.log('You need to enter a  description of your project!');
+            return false;
+          }
+        }
       },
       {
         type: 'checkbox',
@@ -102,7 +120,15 @@ Add a New Project
       {
         type: 'input',
         name: 'link',
-        message: 'Enter the GitHub link to your project. (Required)'
+        message: 'Enter the GitHub link to your project. (Required)',
+        validate: linkinput => {
+          if (linkinput) {
+            return true;
+          } else {
+            console.log('Please enter your project GitHub link!');
+            return false;
+          }
+        }
       },
 
       // The confirm type question is a Boolean that can receive a yes or no (true or false) answer. We can also set the default answer in the default property in case this question gets skipped. Inquirer will prompt the user "y/N", where the capital "N" represents the default answer.//
